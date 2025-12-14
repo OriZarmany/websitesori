@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="_Default" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -26,6 +27,10 @@
     <input type="datetime-local" id="birthdaytime" name="birthdaytime">
 
     <input type="submit" value="Submit">
-</form></h2>  
+         </form></h2> 
+         <%--** אזור הצבת התוצאות**--%>
+         <div>
+             name = <%= name%>
+         </div> 
 </asp:Content>
 
