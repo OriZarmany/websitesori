@@ -4,33 +4,47 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server"> 
-     <h2><form action="/action_page.php">
-    <p>הרשמה:</p>
-    <label for="fname">שם פרטי:</label><br>
-    <input type="text" id="fname" name="fname" value=""><br>
-    <label for="lname"> משפחה:</label><br>
-    <input type="text" id="lname" name="lname" value=""><br><br>
-    <p>אוהד מכבי:</p>
-    <input type="radio" id="html" name="fav_language" value="HTML">
-    <label for="html">כן</label><br>
-    <input type="radio" id="css" name="fav_language" value="CSS">
-    <label for="css">לא</label><br>
-    <p>שחקנים שאת אוהב</p>
-    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-    <label for="vehicle1"> שחקן 1</label><br>
-    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-    <label for="vehicle2"> שחקן 2</label><br>
-    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-    <label for="vehicle3"> שחקן 3</label><br><br>
-    <p>תאריך לידה:</p>
-    <label for="birthdaytime">תאריך לידה (כולל שעה) :</label>
-    <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+   <h2>טופס אוהדי מכבי</h2>
 
-    <input type="submit" value="Submit">
-         </form></h2> 
-         <%--** אזור הצבת התוצאות**--%>
-         <div>
-             name = <%= name%>
-         </div> 
+<label>שם פרטי:</label><br />
+<input type="text" name="firstname" />
+<br /><br />
+
+<label>שם משפחה:</label><br />
+<input type="text" name="lastname" />
+<br /><br />
+
+<p>האם אתה אוהד מכבי?</p>
+<input type="radio" name="fan" value="כן" checked /> כן<br />
+<input type="radio" name="fan" value="לא" /> לא<br />
+<br />
+
+<p>שחקנים שאתה אוהב:</p>
+<input type="checkbox" name="players" value="לוני ווקר" /> לוני ווקר<br />
+<input type="checkbox" name="players" value="גור לביא" /> גור לביא<br />
+<input type="checkbox" name="players" value="תמיר בלאט" /> תמיר בלאט<br />
+<br />
+
+<label>גיל:</label><br />
+<select name="age">
+    <option value="">בחר גיל</option>
+    <option value="10-15">10–15</option>
+    <option value="16-20">16–20</option>
+    <option value="21-30">21–30</option>
+    <option value="31+">31+</option>
+</select>
+<br /><br />
+
+<label>למה אתה אוהב את מכבי?</label><br />
+<textarea name="reason" rows="4" cols="40"></textarea>
+<br /><br />
+
+<input type="submit" value="שלח" />
+
+<hr />
+
+<b>תוצאות:</b><br />
+<asp:Label ID="lblOut" runat="server" />
+</div>
 </asp:Content>
 
