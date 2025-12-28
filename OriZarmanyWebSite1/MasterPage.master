@@ -7,13 +7,24 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        img.menu {
+           width: 100px;
+           height:50px;
+        }
+       
+    </style>
 </head>
 <form id="form1" runat="server">
     <body>
-        <h1>יאלה מכבי</h1>
-        <table border="200">
-            <tr>
-                <td><a href="multi.aspx">לוח הכפל</a><a href="page2.aspx">page2.aspx</a><a href="Register.aspx">הרשמה</a> </td>
+        <h1>האתר שלי</h1>
+        <center>
+        <table border="1" height="700px" width="80%">
+            <tr height="200px">
+                <td>
+                    <a href="multi.aspx"><img class="menu"src="ןimgaze/תמונה3.png" /></a>
+                    <a href="page2.aspx"><img class="menu"src="ןimgaze/תמונה5.png" /></a>
+                    <a href="Register.aspx"><img class="menu"src="ןimgaze/תמונה2.png" /></a> </td>
             </tr>
             <tr>
                 <td>
@@ -22,6 +33,7 @@
                 </td>
             </tr>
         </table>
+            </center>
 </form>
 </body>
 </html>
