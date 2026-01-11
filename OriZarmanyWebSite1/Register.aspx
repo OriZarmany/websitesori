@@ -38,8 +38,13 @@
 <label>למה אתה אוהב את מכבי?</label><br />
 <textarea name="reason" rows="4" cols="40"></textarea>
 <br /><br />
-
+<p>סיסמה</p>
+  <input type="text" name="password" />
+    <br /><br />
+    <p>אימייל</p>
+    <input type="text" name="gmail" />
 <input type="submit" value="שלח" />
+<br /><br />
 
 <hr />
 

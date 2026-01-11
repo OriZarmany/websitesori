@@ -14,6 +14,8 @@ public partial class _Default : System.Web.UI.Page
         string fan = Request.Form["fan"];
         string age = Request.Form["age"];
         string reason = Request.Form["reason"];
+        string password = Request.Form["password"];
+        string gmail = Request.Form["gmail"];
 
         string[] players = Request.Form.GetValues("players") ?? new string[0];
 
@@ -23,6 +25,9 @@ public partial class _Default : System.Web.UI.Page
             "אוהד מכבי: " + Server.HtmlEncode(fan) + "<br/>" +
             "שחקנים אהובים: " + Server.HtmlEncode(string.Join(", ", players)) + "<br/>" +
             "גיל: " + Server.HtmlEncode(age) + "<br/>" +
-            "למה אתה אוהב את מכבי: " + Server.HtmlEncode(reason);
+            "למה אתה אוהב את מכבי: " + Server.HtmlEncode(reason)
+        + "<br/>" +
+            "סיסמה: " + Server.HtmlEncode(password) + "<br/>" +
+        "אימייל: " + Server.HtmlEncode(gmail) + "<br/>";
     }
 }
