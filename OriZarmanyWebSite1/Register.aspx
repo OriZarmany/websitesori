@@ -15,9 +15,17 @@
 <br /><br />
 
 <p>האם אתה אוהד מכבי?</p>
-<input type="radio" name="fan" value="כן" checked /> כן<br />
-<input type="radio" name="fan" value="לא" /> לא<br />
+<input type="radio" name="fan" value=1 checked /> כן<br />
+<input type="radio" name="fan" value=0 /> לא<br />
 <br />
+
+<label>אזור:</label>
+<select name="region">
+    <option value="צפון">צפון</option>
+    <option value="מרכז">מרכז</option>
+    <option value="דרום">דרום</option>
+</select>
+    <br /><br />
 
 <p>שחקנים שאתה אוהב:</p>
 <input type="checkbox" name="players" value="לוני ווקר" /> לוני ווקר<br />
@@ -26,23 +34,21 @@
 <br />
 
 <label>גיל:</label><br />
-<select name="age">
-    <option value="">בחר גיל</option>
-    <option value="10-15">10–15</option>
-    <option value="16-20">16–20</option>
-    <option value="21-30">21–30</option>
-    <option value="31+">31+</option>
-</select>
+    <input type="number" name="age" min="1" max="120" />
 <br /><br />
 
 <label>למה אתה אוהב את מכבי?</label><br />
 <textarea name="reason" rows="4" cols="40"></textarea>
 <br /><br />
+    
 <p>סיסמה</p>
-  <input type="text" name="password" />
-    <br /><br />
+<input type="text" name="pasword" />
+    <br /></br>
+
     <p>אימייל</p>
-    <input type="text" name="gmail" />
+<input type="text" name="email" />
+    <br /></br>
+
 <input type="submit" value="שלח" />
 <br /><br />
 
