@@ -1,24 +1,5 @@
 ﻿using System.Web.UI;
 
-public string st = "";
-
-
-
-
-if (Page.IspostBack)
-{
-}
-
-string firstname = Request.Forem[firstname];
-string lastname = Request.Forem[lastname];
-string fan = Request.Forem[fan];
-string region = Request.Forem[region];
-string players = Request.Forem[players];
-string reason = Request.Forem[reason];
-string pasword = Request.Forem[pasword];
-string email = Request.Forem[email];
-
-
 
 
 
