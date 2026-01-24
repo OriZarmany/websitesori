@@ -26,7 +26,7 @@ using System.Data.SqlClient;
 public class MyAdoHelper
 {
     private const String dbFileName = "~/app_data/test1.mdf"; //<ENTER YOUR DATABASE (.mdf) FILE NAME HERE>";
-    
+
 
     public MyAdoHelper()
     {
@@ -132,7 +132,7 @@ public class MyAdoHelper
         string printStr = "<table border='1'>";
 
         foreach (DataRow row in dt.Rows)
-        {        
+        {
             printStr += "<tr>";
             foreach (object myItemArray in row.ItemArray)
             {
