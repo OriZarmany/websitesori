@@ -132,7 +132,7 @@ public class MyAdoHelper
         string printStr = "<table border='1'>";
 
         foreach (DataRow row in dt.Rows)
-        {
+        {        
             printStr += "<tr>";
             foreach (object myItemArray in row.ItemArray)
             {
