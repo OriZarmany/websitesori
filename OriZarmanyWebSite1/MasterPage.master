@@ -24,7 +24,8 @@
                 <td>
                     <a href="multi.aspx"><img class="menu"src="ןimgaze/תמונה3.png" /></a>
                     <a href="page2.aspx"><img class="menu"src="ןimgaze/תמונה5.png" /></a>
-                    <a href="Register.aspx"><img class="menu"src="ןimgaze/תמונה2.png" /></a> </td>
+                    <a href="Register.aspx"><img class="menu"src="<img src="ןimgaze/register.png" /></a> 
+                    <a href="login.aspx.xc"><img class="menu"src="<img src="ןimgaze/תמונת%20כניסה%20-%20אינטרנט%2024.01.2026.png" /></a> </td>
             </tr>
             <tr>
                 <td>

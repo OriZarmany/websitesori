@@ -26,33 +26,20 @@ protected void Page_Load(object sender, EventArgs e)
         string fan = Request.Form["fan"];
         string age = Request.Form["age"];
         string reason = Request.Form["reason"];
-        string password = Request.Form["password"];
+        string pasword = Request.Form["password"];
         string gmail = Request.Form["gmail"];
 
         string[] players = Request.Form.GetValues("players") ?? new string[0];
 
-        //if (string.IsNullOrWhiteSpace(firstName) ||
-        //    string.IsNullOrWhiteSpace(lastName) ||
-        //    string.IsNullOrWhiteSpace(email) ||
-        //    string.IsNullOrWhiteSpace(password))
-        //{
-        //    lblOut.Text = "אנא מלא את כל השדות החובה.";
-        //    return;
-        //}
+        string sql =
+           "SELECT * FROM [dbo].[table] " +
+           "WHERE email = N'" + email + "' ";
+        bool exists = MyAdoHelper.IsExist(sql);
 
-        //if (string.IsNullOrWhiteSpace(region))
-        //{
-        //    lblOut.Text = "אנא בחר אזור.";
-        //    return;
-        //}
+        if (!exists)
+        {
 
-        //if (players.Length == 0 || players == null)
-        //{
-        //    lblOut.Text = "אנא בחר לפחות שחקן אחד אהוב.";
-        //    return;
-        //}
-
-        lblOut.Text =
+            lblOut.Text =
             "שם פרטי: " + Server.HtmlEncode(firstName) + "<br/>" +
             "שם משפחה: " + Server.HtmlEncode(lastName) + "<br/>" +
             "אוהד מכבי: " + Server.HtmlEncode(fan) + "<br/>" +
@@ -62,5 +49,13 @@ protected void Page_Load(object sender, EventArgs e)
         + "<br/>" +
             "סיסמה: " + Server.HtmlEncode(password) + "<br/>" +
         "אימייל: " + Server.HtmlEncode(gmail) + "<br/>";
+
+            MyAdoHelper.DoQuery("MyDB.mdf",lblOut.Text);
+            Response.Redirect("login.aspx");
+        }
+        else
+        {
+            st = "המשתמש קיים במערכת";
+        }
     }
 }
