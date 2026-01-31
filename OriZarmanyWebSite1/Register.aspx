@@ -28,8 +28,21 @@
     <br /><br />
 
 <p>שחקנים שאתה אוהב:</p>
-<input type="checkbox" name="players" value="לוני ווקר" /> לוני ווקר<br />
+   <input type="checkbox" name="players" value="ג'ון דיברתולומאו" /> ג'ון דיברתולומאו<br />
+    <input type="checkbox" name="players" value="גבריאל לונברג" /> גבריאל לונדברג <br />
+<input type="checkbox" name="players" value="ג'יילן הורד" /> ג'יילן הורד<br />
+<input type="checkbox" name="players" value="ג'ימי קלארק" /> ג'ימי קלארק<br />
+<input type="checkbox" name="players" value="מרסין סנטוס" />מרסין סנטוס <br />
+    <input type="checkbox" name="players" value="אורן סהר" /> אורן סהר<br />
 <input type="checkbox" name="players" value="גור לביא" /> גור לביא<br />
+    <input type="checkbox" name="players" value="לוני ווקר" /> לוני ווקר<br />
+<input type="checkbox" name="players" value="רומן סורקין" /> רומן סורקין <br />
+    <input type="checkbox" name="players" value="אושיי בריסט" />אושיי בריסט <br />
+    <input type="checkbox" name="players" value="וויל רימן" /> וויל ריימן<br />
+<input type="checkbox" name="players" value="תמיר גולד" /> גתמירר גולד<br />
+    <input type="checkbox" name="players" value="ג'ף דאוטין ג'וניור" /> ג'ף דאוטין ג'וניור<br />
+<input type="checkbox" name="players" value="טי.ג'יי ליף" /> טי.ג'יי ליף <br />
+<input type="checkbox" name="players" value="זאק הנקינס" /> זאק הנקינס<br />
 <input type="checkbox" name="players" value="תמיר בלאט" /> תמיר בלאט<br />
 <br />
 
