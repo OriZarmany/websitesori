@@ -26,6 +26,6 @@ public partial class login : System.Web.UI.Page
         if (!exists)
             st = "אימייל או סיסמה שגויים";
         else
-            Response.Redirect("home.aspx");
+            st = "משתמש אותר בהצלחה";
     }
 }

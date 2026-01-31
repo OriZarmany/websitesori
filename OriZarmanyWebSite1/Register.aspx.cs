@@ -5,13 +5,9 @@ using System.Web.UI;
 public partial class _Default : Page
 {
 
-
     public string st = "";
 
-
-
-
-protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack) return;
 
@@ -27,14 +23,18 @@ protected void Page_Load(object sender, EventArgs e)
         string[] playersArr = Request.Form.GetValues("players");
         string players = playersArr != null ? string.Join(", ", playersArr) : "";
 
+
         string sql =
-          "SELECT COUNT(*) FROM [dbo].[table] " +
-          "WHERE email = N'" + email + "'";
+            "SELECT * FROM [dbo].[table] " +
+            "WHERE email = N'" + email + "'";
+
         bool exists = MyAdoHelper.IsExist(sql);
+
 
         if (exists)
         {
-            st = "משתמש קיים במערכת עם המייל הזה";
+            st = "email" + email + " קיים במערכת, אנא בחר מייל אחר" + exists;
+            // st = "משתמש קיים במערכת עם המייל הזה";
             return;
         }
 
