@@ -1,40 +1,44 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>האתר שלי</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
     <style>
-        img.menu {
-           width: 100px;
-           height:50px;
-        }
-       
+        body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; }
+        .wrap { width: 80%; margin: 0 auto; }
+        .header { padding: 16px 0; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; }
+        .menu { padding: 14px; border-bottom: 1px solid #eee; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .menu a { text-decoration: none; }
+        img.menuIcon { width: 100px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc; }
+        .content { padding: 18px; }
     </style>
 </head>
-<form id="form1" runat="server">
-    <body>
-        <h1>האתר שלי</h1>
-        <center>
-        <table border="1" height="700px" width="80%">
-            <tr height="200px">
-                <td>
-                    <a href="multi.aspx"><img class="menu"src="ןimgaze/תמונה3.png" /></a>
-                    <a href="page2.aspx"><img class="menu"src="ןimgaze/תמונה5.png" /></a>
-                    <a href="Register.aspx"><img class="menu"src="<img src="ןimgaze/register.png" /></a> 
-                    <a href="login.aspx.xc"><img class="menu"src="<img src="ןimgaze/תמונת%20כניסה%20-%20אינטרנט%2024.01.2026.png" /></a> </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-                </td>
-            </tr>
-        </table>
-            </center>
-</form>
+
+<body>
+    <form id="form1" runat="server">
+        <div class="wrap">
+            <div class="header">
+                <h1>האתר שלי</h1>
+            </div>
+
+            <div class="card">
+                <div class="menu">
+                    <a href="multi.aspx"><img class="menuIcon" src="imgaze/תמונה3.png" alt="Multi" /></a>
+                    <a href="page2.aspx"><img class="menuIcon" src="imgaze/תמונה5.png" alt="Page2" /></a>
+                    <a href="Register.aspx"><img class="menuIcon" src="imgaze/תמונה2.png" alt="Register" /></a>
+                    <a href="login.aspx"><img class="menuIcon" src="imgaze/תמונת כניסה - אינטרנט 24.01.2026.png" alt="Login" /></a>
+                </div>
+
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+        </div>
+    </form>
 </body>
 </html>
