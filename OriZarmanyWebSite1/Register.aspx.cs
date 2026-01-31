@@ -28,8 +28,8 @@ protected void Page_Load(object sender, EventArgs e)
         string players = playersArr != null ? string.Join(", ", playersArr) : "";
 
         string sql =
-          "SELECT * FROM [dbo].[table] " +
-          "WHERE email = N'" + email + "' ";
+          "SELECT COUNT(*) FROM [dbo].[table] " +
+          "WHERE email = N'" + email + "'";
         bool exists = MyAdoHelper.IsExist(sql);
 
         if (exists)

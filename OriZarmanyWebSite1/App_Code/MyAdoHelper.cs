@@ -25,7 +25,7 @@ using System.Data.SqlClient;
 
 public class MyAdoHelper
 {
-    private const String dbFileName = "~/app_data/test1.mdf"; //<ENTER YOUR DATABASE (.mdf) FILE NAME HERE>";
+    private const String dbFileName = "~/app_data/MyDB.mdf"; //<ENTER YOUR DATABASE (.mdf) FILE NAME HERE>";
 
 
     public MyAdoHelper()

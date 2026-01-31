@@ -71,9 +71,9 @@
                     <a href="page2.aspx">
                         <img class="menuIcon" src="images/page2.png" alt="Page2" /></a>
                     <a href="Register.aspx">
-                        <img class="menuIcon" src="images/register.png" alt="Register" /></a>
+                        <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
                     <a href="login.aspx">
-                        <img class="menuIcon" src="images/login.png" alt="Login" /></a>
+                        <img class="menuIcon" src="images/login2.png" alt="Login" /></a>
                 </div>
 
                 <div class="content">
