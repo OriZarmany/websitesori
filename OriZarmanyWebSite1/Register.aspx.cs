@@ -27,6 +27,18 @@ protected void Page_Load(object sender, EventArgs e)
         string[] playersArr = Request.Form.GetValues("players");
         string players = playersArr != null ? string.Join(", ", playersArr) : "";
 
+        string sql =
+          "SELECT * FROM [dbo].[table] " +
+          "WHERE email = N'" + email + "' ";
+        bool exists = MyAdoHelper.IsExist(sql);
+
+        if (exists)
+        {
+            st = "משתמש קיים במערכת עם המייל הזה";
+            return;
+        }
+
+
         string sqlInsert =
             "INSERT INTO [dbo].[table] " +
             "(email, password, firstName, lastName, region, fan, age, reason, players) " +
@@ -44,5 +56,6 @@ protected void Page_Load(object sender, EventArgs e)
 
         MyAdoHelper.DoQuery("MyDB.mdf", sqlInsert);
         st = "נרשמת בהצלחה!";
+        Response.Redirect("login.aspx");
     }
 }

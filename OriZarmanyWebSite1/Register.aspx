@@ -2,22 +2,69 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .box { max-width: 520px; margin: 0 auto; }
-        .row { margin-bottom: 12px; }
-        label { display: block; margin-bottom: 6px; font-weight: 600; }
-        .input, select, textarea {
-            width: 100%; box-sizing: border-box;
-            padding: 8px 10px; border: 1px solid #ccc; border-radius: 8px;
+        .box {
+            max-width: 520px;
+            margin: 0 auto;
         }
-        .inline { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-        .btn { padding: 10px 14px; border: 0; border-radius: 8px; cursor: pointer; background: #2563eb; color: #fff; }
-        .msg { margin-top: 12px; padding: 10px; border-radius: 8px; background: #f3f4f6; }
+
+        .row {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .inline {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .msg {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f3f4f6;
+        }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="box">
         <h2>טופס אוהדי מכבי</h2>
+
+        <div class="row">
+            <label>אימייל:</label>
+            <input class="input" type="text" name="email" />
+        </div>
+
+        <div class="row">
+            <label>סיסמה:</label>
+            <input class="input" type="text" name="password" />
+        </div>
+
+
 
         <div class="row">
             <label>שם פרטי:</label>
@@ -32,8 +79,12 @@
         <div class="row">
             <label>האם אתה אוהד מכבי?</label>
             <div class="inline">
-                <label><input type="radio" name="fan" value="1" checked /> כן</label>
-                <label><input type="radio" name="fan" value="0" /> לא</label>
+                <label>
+                    <input type="radio" name="fan" value="1" checked />
+                    כן</label>
+                <label>
+                    <input type="radio" name="fan" value="0" />
+                    לא</label>
             </div>
         </div>
 
@@ -48,9 +99,16 @@
 
         <div class="row">
             <label>שחקנים שאתה אוהב:</label>
-            <label><input type="checkbox" name="players" value="לוני ווקר" /> לוני ווקר</label>
-            <label><input type="checkbox" name="players" value="גור לביא" /> גור לביא</label>
-            <label><input type="checkbox" name="players" value="תמיר בלאט" /> תמיר בלאט</label>
+            <label>
+                <input type="checkbox" name="players" value="לוני ווקר" />
+                לוני ווקר</label>
+            <label>
+                <input type="checkbox" name="players" value="גור לביא" />
+                גור לביא</label>
+            <label>
+                <input type="checkbox" name="players" value="תמיר בלאט" />
+                תמיר בלאט</label>
+
         </div>
 
         <div class="row">
@@ -64,21 +122,12 @@
         </div>
 
         <div class="row">
-            <label>סיסמה:</label>
-            <input class="input" type="text" name="password" />
-        </div>
-
-        <div class="row">
-            <label>אימייל:</label>
-            <input class="input" type="text" name="email" />
-        </div>
-
-        <div class="row">
             <input class="btn" type="submit" value="שלח" />
         </div>
 
-        <% if (!string.IsNullOrEmpty(st)) { %>
-            <div class="msg"><%= st %></div>
+        <% if (!string.IsNullOrEmpty(st))
+            { %>
+        <div class="msg"><%= st %></div>
         <% } %>
     </div>
 </asp:Content>

@@ -8,14 +8,52 @@
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; background: #f6f7fb; }
-        .wrap { width: 80%; margin: 0 auto; }
-        .header { padding: 16px 0; }
-        .card { background: #fff; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; }
-        .menu { padding: 14px; border-bottom: 1px solid #eee; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-        .menu a { text-decoration: none; }
-        img.menuIcon { width: 100px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc; }
-        .content { padding: 18px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f6f7fb;
+        }
+
+        .wrap {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .header {
+            padding: 16px 0;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .menu {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+            .menu a {
+                text-decoration: none;
+            }
+
+        img.menuIcon {
+            width: 100px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .content {
+            padding: 18px;
+        }
     </style>
 </head>
 
@@ -28,10 +66,14 @@
 
             <div class="card">
                 <div class="menu">
-                    <a href="multi.aspx"><img class="menuIcon" src="imgaze/תמונה3.png" alt="Multi" /></a>
-                    <a href="page2.aspx"><img class="menuIcon" src="imgaze/תמונה5.png" alt="Page2" /></a>
-                    <a href="Register.aspx"><img class="menuIcon" src="imgaze/תמונה2.png" alt="Register" /></a>
-                    <a href="login.aspx"><img class="menuIcon" src="imgaze/תמונת כניסה - אינטרנט 24.01.2026.png" alt="Login" /></a>
+                    <a href="multi.aspx">
+                        <img class="menuIcon" src="images/multi.png" alt="Multi" /></a>
+                    <a href="page2.aspx">
+                        <img class="menuIcon" src="images/page2.png" alt="Page2" /></a>
+                    <a href="Register.aspx">
+                        <img class="menuIcon" src="images/register.png" alt="Register" /></a>
+                    <a href="login.aspx">
+                        <img class="menuIcon" src="images/login.png" alt="Login" /></a>
                 </div>
 
                 <div class="content">
