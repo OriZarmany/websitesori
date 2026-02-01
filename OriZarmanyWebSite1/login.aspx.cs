@@ -23,7 +23,7 @@ public partial class login : System.Web.UI.Page
 
         bool exists = MyAdoHelper.IsExist(sql);
 
-        if (!exists)
+        if (exists)
             st = "אימייל או סיסמה שגויים";
         else
             st = "משתמש אותר בהצלחה";

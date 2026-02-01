@@ -25,7 +25,7 @@ public partial class _Default : Page
 
 
         string sql =
-            "SELECT * FROM [dbo].[table] " +
+            "SELECT * FROM tUsers " +
             "WHERE email = N'" + email + "'";
 
         bool exists = MyAdoHelper.IsExist(sql);
@@ -40,7 +40,7 @@ public partial class _Default : Page
 
 
         string sqlInsert =
-            "INSERT INTO [dbo].[table] " +
+            "INSERT INTO tUsers " +
             "(email, password, firstName, lastName, region, fan, age, reason, players) " +
             "VALUES (" +
             "N'" + email + "'," +
@@ -48,7 +48,7 @@ public partial class _Default : Page
             "N'" + firstName + "'," +
             "N'" + lastName + "'," +
             "N'" + region + "'," +
-            fan + "," +
+            "N'" + fan + "'," +
             age + "," +
             "N'" + reason + "'," +
             "N'" + players + "'" +
