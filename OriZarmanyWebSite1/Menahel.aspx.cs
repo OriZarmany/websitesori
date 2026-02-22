@@ -11,16 +11,16 @@ public partial class Menahel : System.Web.UI.Page
     public string st = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack) return;
+        //if (!IsPostBack) return;
 
         string fn = Request.Form["firstname"];
         string ln = Request.Form["lastname"];
 
 
         string sql = "SELECT * FROM TUSERS where " +
-            "firstName = N'"+fn+"' and " 
+            "firstName LIKE N'%"+fn+"%' and " 
            +
-            "lastName = N'" + ln + "'";
+            "lastName LIKE N'%" + ln + "%'";
 
         DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
 
