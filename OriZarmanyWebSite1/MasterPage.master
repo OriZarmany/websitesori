@@ -74,7 +74,10 @@
                         <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
                     <a href="login.aspx">
                         <img class="menuIcon" src="images/login2.png" alt="Login" /></a>
-                </div>
+               <a href="addplayers.aspx">
+ <img class="menuIcon" src=<img src="images/מכבי%20תמונה%20שחקן.jpg" /> alt="Login" /></a>
+               </a>
+                    </div>
 
                 <div class="content">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
