@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>האתר שלי</title>
+    <img src="images/תמונת%20האתר%20של%20מכבי1.png" alt="Header Image" style="width:100%; max-height:200px; object-fit:cover;" />
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
@@ -74,9 +74,9 @@
                         <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
                     <a href="login.aspx">
                         <img class="menuIcon" src="images/login2.png" alt="Login" /></a>
-               <a href="addplayers.aspx">
- <img class="menuIcon" src=<img src="images/מכבי%20תמונה%20שחקן.jpg" /> alt="Login" /></a>
-               </a>
+<a href="addplayers.aspx">
+    <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
+</a>
                     </div>
 
                 <div class="content">

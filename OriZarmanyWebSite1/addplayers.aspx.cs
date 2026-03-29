@@ -15,7 +15,7 @@ public partial class addplayers : System.Web.UI.Page
             string playerage = Request.Form["playerage"];
 
             string sqlInsert =
-                "INSERT INTO PLAYERS (PlayerName, playerNumber, theplayerssesonsatMaccabi, playerage) VALUES (" +
+                "INSERT TPLAYERS (PlayerName, playerNumber, theplayerssesonsatMaccabi, playerage) VALUES (" +
                 "N'" + playerName + "', " +
                  playerNumber + ", " +
                   theplayerssesonsatMaccabi + ", " +
