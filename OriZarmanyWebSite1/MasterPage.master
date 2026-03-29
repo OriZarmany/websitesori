@@ -70,16 +70,22 @@
     <img class="menuIcon" src="images/אודות%20מכבי.png" alt="Multi" />
 </a>
                     <a href="page2.aspx">
-                        <img class="menuIcon" src="images/page2.png" alt="Page2" /></a>
+                        <img class="menuIcon" src="images/תמונת%20חיפוש%20למכבי.png" /></a>
                     <a href="Register.aspx">
                         <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
                     <a href="login.aspx">
-                        <img class="menuIcon" src="images/login2.png" alt="Login" /></a>
+                        <img class="menuIcon" src="images/תמונה%20להתחברות%20מכבי.png" /></a>
 <a href="addplayers.aspx">
     <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
 </a>
                     <a href="players.aspx">
     <img class="menuIcon" src="images/תמונת%20סגל%20מכבי.jpg" alt="Players" />
+</a>
+                                        <a href="galery.aspx">
+    <img class="menuIcon" src="images/תמונת%20גלריה%20של%20מכבי.png" alt="galery" />
+</a>
+                    <a href="exit.aspx">
+    <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="exit" />
 </a>
                     </div>
 
