@@ -24,12 +24,13 @@ public partial class players : System.Web.UI.Page
         }
         else
         {
-            st += "<table border='1'>";
+            st += "<table class='playersTable'>";
             st += "<tr>";
-            st += "<td> playerName </td>";
-            st += "<td> playerNumber </td>";
-            st += "<td> theplayerssesonsatMaccabi </td>";
-            st += "<td> playerage </td>";
+            st += "<th></th>";
+            st += "<th>שם השחקן</th>";
+            st += "<th>מספר השחקן</th>";
+            st += "<th>כמה עונות השחקן במכבי</th>";
+            st += "<th>גיל השחקן</th>";
             st += "</tr>";
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -37,7 +38,7 @@ public partial class players : System.Web.UI.Page
                 st += "<tr>";
                 for (int k = 0; k < dt.Columns.Count; k++)
                 {
-                    st += "<td>" + dt.Rows[i][k] + "</td>";
+                    st += "<td style='padding:5px; text-align:center;'>" + dt.Rows[i][k] + "</td>";
                 }
                 st += "</tr>";
             }
