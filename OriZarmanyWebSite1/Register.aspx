@@ -100,18 +100,18 @@
         <div class="row">
             <label>שחקנים שאתה אוהב:</label>
             <label>
-                <input type="checkbox" name="players" value="ג'ון דיברתולומאו" />
-                ג'ון דיברתולומאו</label>
+                <input type="checkbox" name="players" value="גון דיברתולומאו" />
+                גון דיברתולומאו</label>
             <label>
                 <input type="checkbox" name="players" value="גבריאל לונברג" />
                 גבריאל לונדברג
             </label>
             <label>
-                <input type="checkbox" name="players" value="ג'יילן הורד" />
-                ג'יילן הורד</label>
+                <input type="checkbox" name="players" value="גיילן הורד" />
+                גיילן הורד</label>
             <label>
-                <input type="checkbox" name="players" value="ג'ימי קלארק" />
-                ג'ימי קלארק</label>
+                <input type="checkbox" name="players" value="גימי קלארק" />
+                גימי קלארק</label>
             <label>
                 <input type="checkbox" name="players" value="מרסין סנטוס" />מרסין סנטוס
             </label>
@@ -122,6 +122,9 @@
                 <input type="checkbox" name="players" value="גור לביא" />
                 גור לביא</label>
             <label>
+                    <input type="checkbox" name="players" value="עמית אבו" />
+    עמית אבו</label>
+<label>
                 <input type="checkbox" name="players" value="לוני ווקר" />
                 לוני ווקר</label>
             <label>
@@ -138,11 +141,11 @@
                 <input type="checkbox" name="players" value="תמיר גולד" />
                 גתמירר גולד</label>
             <label>
-                <input type="checkbox" name="players" value="ג'ף דאוטין ג'וניור" />
-                ג'ף דאוטין ג'וניור</label>
+                <input type="checkbox" name="players" value="גף דאוטין גוניור" />
+                גף דאוטין גוניור</label>
             <label>
-                <input type="checkbox" name="players" value="טי.ג'יי ליף" />
-                טי.ג'יי ליף
+                <input type="checkbox" name="players" value="טי.גיי ליף" />
+                טי.גיי ליף
             </label>
             <label>
                 <input type="checkbox" name="players" value="זאק הנקינס" />
