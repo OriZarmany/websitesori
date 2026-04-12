@@ -71,6 +71,8 @@
             </div>
             </div>
 
+           שלום <%=Session["userName"] %>
+
             <div class="card">
                 <div class="menu">
                     <a href="multi.aspx">

@@ -18,21 +18,31 @@ public partial class login : System.Web.UI.Page
 
         if (email == "orimenal@gmail.com" && pass == "manael123")
         {
-            Response.Redirect("menel.aspx");
+            Session["userName"] = "מנהל";
+            Response.Redirect("menahel.aspx");
+            
         }
         else
         {
+            Session["userName"] = "רשום";
             string sql =
                 "SELECT * FROM [dbo].[table] " +
                 "WHERE email = N'" + email + "' " +
                 "AND password = N'" + pass + "'";
 
-        bool exists = MyAdoHelper.IsExist(sql);
+            bool exists = MyAdoHelper.IsExist(sql);
+            
 
-        if (exists)
-            st = "אימייל או סיסמה שגויים";
-        else
-            st = "משתמש אותר בהצלחה";
+            if (exists)
+            {
+                Session["userName"] = "אורח";
+                st = "אימייל או סיסמה שגויים";
+                
+            }
+            else
+            {
+                st = "משתמש אותר בהצלחה";
+            }
+        }
     }
-}
 }
