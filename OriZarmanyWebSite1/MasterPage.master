@@ -75,27 +75,44 @@
 
             <div class="card">
                 <div class="menu">
+                 <% if (Session["nihol"] == "ok" || Session["user"] == "ok")
+                     { %>
                     <a href="multi.aspx">
     <img class="menuIcon" src="images/אודות%20מכבי.png" alt="Multi" />
+                        
 </a>
+                    <% } %>
+
+                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
                     <a href="page2.aspx">
                         <img class="menuIcon" src="images/תמונת%20חיפוש%20למכבי.png" /></a>
+                    <% } %>
+
                     <a href="Register.aspx">
                         <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
                     <a href="login.aspx">
                         <img class="menuIcon" src="images/תמונה%20להתחברות%20מכבי.png" /></a>
+                    <% if (Session["nihol"] == "ok" ) { %>
 <a href="addplayers.aspx">
     <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
 </a>
+                         <% } %>
+                    
+                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
                     <a href="players.aspx">
     <img class="menuIcon" src="images/תמונת%20סגל%20מכבי.jpg" alt="Players" />
 </a>
-                                        <a href="galery.aspx">
+                     <% } %>
+                          <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>              
+                    <a href="galery.aspx">
     <img class="menuIcon" src="images/תמונת%20גלריה%20של%20מכבי.png" alt="galery" />
 </a>
+                    <% } %>
+                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
                                             <a href="updatedetails.aspx">
     <img class="menuIcon" src="images/עדכון%20פרטים%20אתר%20מכבי.png" alt="updatedetails" />
 </a>
+                    <% } %>
                     <a href="exit.aspx">
     <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="exit" />
 </a>
