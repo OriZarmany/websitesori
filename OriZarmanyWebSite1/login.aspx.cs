@@ -29,7 +29,7 @@ public partial class login : System.Web.UI.Page
         {
 
             string sql =
-                "SELECT * FROM [dbo].[table] " +
+                "SELECT * FROM [dbo].[tUsers] " +
                 "WHERE email = N'" + email + "' " +
                 "AND password = N'" + pass + "'";
 
@@ -47,8 +47,8 @@ public partial class login : System.Web.UI.Page
             {
                 //st = "משתמש אותר בהצלחה";
                 Session["user"] = "ok";
-                Session["name"] = dt.Rows[0]["fn"];
-                Response.Redirect("home.aspx");
+                Session["userName"] = dt.Rows[0]["firstName"];
+                Response.Redirect("page2.aspx");
                 
             }
         }

@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" onsubmit="return checkAll();">
         <div class="wrap">
             <div class="header">
                 <div class="header">
@@ -113,7 +113,7 @@
     <img class="menuIcon" src="images/עדכון%20פרטים%20אתר%20מכבי.png" alt="updatedetails" />
 </a>
                     <% } %>
-                    <a href="exit.aspx">
+                    <a href="logout.aspx">
     <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="exit" />
 </a>
                     </div>

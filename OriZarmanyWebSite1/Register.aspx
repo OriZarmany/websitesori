@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="_Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script language="javascript">
+        function checkAll() {
+            alert("Register");
+            return true;
+        }
+    </script>
     <style>
         .box {
             max-width: 520px;
@@ -51,46 +57,52 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <div class="box">
         <h2>טופס אוהדי מכבי</h2>
 
         <div class="row">
             <label>אימייל:</label>
-            <input class="input" type="text" name="email" />
+            <input class="input" type="text" name="email" id="email"/>
+            <span class="error" id="emailError"> </span>
         </div>
 
         <div class="row">
             <label>סיסמה:</label>
-            <input class="input" type="text" name="password" />
+            <input class="input" type="text" name="password" id="password"/>
+            <span class="error" id="passwordError"> </span>
         </div>
 
 
 
         <div class="row">
             <label>שם פרטי:</label>
-            <input class="input" type="text" name="firstname" />
+            <input class="input" type="text" name="firstname" id="firstname" />
+            <span class="error" id="firstnameError"> </span>
         </div>
 
         <div class="row">
             <label>שם משפחה:</label>
-            <input class="input" type="text" name="lastname" />
+            <input class="input" type="text" name="lastname" id="lastname"/>
+             <span class="error" id="lastnameError"> </span>
         </div>
 
         <div class="row">
             <label>האם אתה אוהד מכבי?</label>
-            <div class="inline">
+            <div class="inline" id="inline">
                 <label>
                     <input type="radio" name="fan" value="1" checked />
                     כן</label>
                 <label>
                     <input type="radio" name="fan" value="0" />
                     לא</label>
+                 <span class="error" id="inlineError"> </span>
             </div>
         </div>
 
         <div class="row">
             <label>אזור:</label>
-            <select class="input" name="region">
+            <select class="input" name="region" id="region">
                 <option value="צפון">צפון</option>
                 <option value="מרכז">מרכז</option>
                 <option value="דרום">דרום</option>
@@ -154,22 +166,25 @@
                 <input type="checkbox" name="players" value="תמיר בלאט" />
                 תמיר בלאט</label>
 
-
+            <span class="error" id="regionError"> </span>
         </div>
 
         <div class="row">
             <label>גיל:</label>
-            <input class="input" type="number" name="age" min="1" max="120" />
+            <input class="input" type="number" name="age" min="1" max="120" id="age"/>
+            <span class="error" id="ageError"> </span>
         </div>
 
         <div class="row">
             <label>למה אתה אוהב את מכבי?</label>
-            <textarea class="input" name="reason" rows="4" cols="40"></textarea>
+            <textarea class="input" name="reason" id="reason" rows="4" cols="40"></textarea>
+                        <span class="error" id="reasonError"> </span>
         </div>
 
         <div class="row">
             <input class="btn" type="submit" value="שלח" />
         </div>
+
 
         <% if (!string.IsNullOrEmpty(st))
             { %>
