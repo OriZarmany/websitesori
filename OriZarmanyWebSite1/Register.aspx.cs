@@ -17,7 +17,7 @@ public partial class _Default : Page
         string lastName = Request.Form["lastname"];
         string region = Request.Form["region"];
         string fan = Request.Form["fan"];
-        string age = Request.Form["age"];
+        string age = Request.Form["age1"];
         string reason = Request.Form["reason"];
 
         string[] playersArr = Request.Form.GetValues("players");

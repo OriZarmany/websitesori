@@ -3,9 +3,115 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script language="javascript">
         function checkAll() {
-            alert("Register");
+
+            firstnameError.innerHTML = "";
+            lastnameError.innerHTML = "";
+            emailError.innerHTML = "";
+            passwordError.innerHTML = "";
+            inlineError.innerHTML = "";
+            ageError.innerHTML = "";
+            reasonError.innerHTML = "";
+
+            let f = true;
+
+            f = checkFirstName() && f;
+            f = checkLastName() && f;
+            f = checkEmail() && f;
+            f = checkPassword() && f;
+            f = checkFan() && f;
+            f = checkAge() && f;
+            f = checkReason() && f;
+
+            return f;
+        }
+
+        function checkFirstName() {
+            let val = document.getElementById("firstname").value;
+            let err = document.getElementById("firstnameError");
+
+            if (val.length < 2 || val.length > 20) {
+                err.innerHTML = "שם פרטי לא תקין";
+                return false;
+            }
             return true;
         }
+
+        function checkLastName() {
+            let val = document.getElementById("lastname").value;
+            let err = document.getElementById("lastnameError");
+
+            if (val.length < 2 || val.length > 20) {
+                err.innerHTML = "שם משפחה לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        function checkEmail() {
+            let val = document.getElementById("email").value;
+            let err = document.getElementById("emailError");
+
+            if (val.length < 5 || val.length > 30 || !val.includes("@")) {
+                err.innerHTML = "אימייל לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        function checkPassword() {
+            let val = document.getElementById("password").value;
+            let err = document.getElementById("passwordError");
+
+            if (val.length < 6 || val.length > 20) {
+                err.innerHTML = "סיסמה לא תקינה";
+                return false;
+            }
+            return true;
+        }
+
+        function checkFan() {
+            let radios = document.getElementsByName("fan");
+            let err = document.getElementById("inlineError");
+
+            let selected = false;
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selected = true;
+                    break;
+                }
+            }
+
+            if (!selected) {
+                err.innerHTML = "יש לבחור כן או לא";
+                return false;
+            }
+
+            return true;
+        }
+
+        function checkAge() {
+            let val = document.getElementById("age").value;
+            let err = document.getElementById("ageError");
+
+            if (val === "" || val < 1 || val > 120) {
+                err.innerHTML = "גיל לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        function checkReason() {
+            let val = document.getElementById("reason").value;
+            let err = document.getElementById("reasonError");
+
+            if (val.length < 5) {
+                err.innerHTML = "נא למלא סיבה";
+                return false;
+            }
+            return true;
+        }
+
+     
     </script>
     <style>
         .box {
@@ -171,7 +277,7 @@
 
         <div class="row">
             <label>גיל:</label>
-            <input class="input" type="number" name="age" min="1" max="120" id="age"/>
+            <input class="input" type="number" name="age1" min="1" max="120" id="age"/>
             <span class="error" id="ageError"> </span>
         </div>
 
