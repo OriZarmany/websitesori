@@ -29,7 +29,7 @@
             let val = document.getElementById("firstname").value;
             let err = document.getElementById("firstnameError");
 
-            if (val.length < 2 || val.length > 20) {
+            if (val.length < 2 || val.length > 20 && !/\d/.test(val)) {
                 err.innerHTML = "שם פרטי לא תקין";
                 return false;
             }
@@ -40,7 +40,7 @@
             let val = document.getElementById("lastname").value;
             let err = document.getElementById("lastnameError");
 
-            if (val.length < 2 || val.length > 20) {
+            if (val.length < 2 || val.length > 20 && !/\d/.test(val)) {
                 err.innerHTML = "שם משפחה לא תקין";
                 return false;
             }
@@ -62,7 +62,10 @@
             let val = document.getElementById("password").value;
             let err = document.getElementById("passwordError");
 
-            if (val.length < 6 || val.length > 20) {
+            let hasLetters = /[a-zA-Z]/.test(val);
+            let hasNumbers = /\d/.test(val);
+
+            if (val.length < 6 || val.length > 20 && !hasLetters && !hasNumbers) {
                 err.innerHTML = "סיסמה לא תקינה";
                 return false;
             }
@@ -93,7 +96,7 @@
             let val = document.getElementById("age").value;
             let err = document.getElementById("ageError");
 
-            if (val === "" || val < 1 || val > 120) {
+            if (val === "" || isNaN(val) || val < 1 || val > 120) {
                 err.innerHTML = "גיל לא תקין";
                 return false;
             }
@@ -104,7 +107,7 @@
             let val = document.getElementById("reason").value;
             let err = document.getElementById("reasonError");
 
-            if (val.length < 5) {
+            if (val.length < 5 ) {
                 err.innerHTML = "נא למלא סיבה";
                 return false;
             }
