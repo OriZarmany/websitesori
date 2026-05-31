@@ -83,15 +83,14 @@
 </a>
                     <% } %>
 
-                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
-                    <a href="page2.aspx">
-                        <img class="menuIcon" src="images/תמונת%20חיפוש%20למכבי.png" /></a>
-                    <% } %>
-
+                    <% if (Session["nihol"] == "ok" || Session["user"] != "ok") { %>
                     <a href="Register.aspx">
                         <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
+                      <% } %>
+                         <% if (Session["nihol"] == "ok" || Session["user"] != "ok") { %>
                     <a href="login.aspx">
                         <img class="menuIcon" src="images/תמונה%20להתחברות%20מכבי.png" /></a>
+                       <% } %>
                     <% if (Session["nihol"] == "ok" ) { %>
 <a href="addplayers.aspx">
     <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
@@ -99,26 +98,25 @@
                          <% } %>
                     
                     <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
-                    <a href="players.aspx">
+                    <a href="players2.aspx">
     <img class="menuIcon" src="images/תמונת%20סגל%20מכבי.jpg" alt="Players" />
 </a>
                      <% } %>
                           <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>              
-                    <a href="galery.aspx">
+                    <a href="galerry.aspx">
     <img class="menuIcon" src="images/תמונת%20גלריה%20של%20מכבי.png" alt="galery" />
 </a>
                     <% } %>
-                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
-                                            <a href="updatedetails.aspx">
-    <img class="menuIcon" src="images/עדכון%20פרטים%20אתר%20מכבי.png" alt="updatedetails" />
-</a>
-                    <% } %>
+                 
+                  
+                   <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %> 
                     <a href="logout.aspx">
     <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="exit" />
 </a>
-                    </div>
 
-                <div class="content">
+                    </div>
+                                    <% } %>
+                <div class="content" >
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                 </div>
             </div>

@@ -9,6 +9,7 @@ public partial class multi : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        /*
         int n = 10;
         string html = "<table border='1' cellpadding='5'>";
 
@@ -31,5 +32,7 @@ public partial class multi : System.Web.UI.Page
         html += "</table>";
 
         lblTable.Text = html;
+        */
+
     }
 }
