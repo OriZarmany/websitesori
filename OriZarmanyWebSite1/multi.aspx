@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <h2>        אני אורי זרמני 
              </h2>
     <h2>            בן 16 מכפר סבא
@@ -15,6 +16,8 @@
     <h3>(הכולל את גיל השחקנים, מספרם, וכמה עונות הם במכבי)פרטי שחקנים</h3>
         <h3>גלריה של זכיות מכבי לדורותיהם</h3>
         <h3>ובעצם להיות חלק ממשפחת מכבי</h3>
+
+    <img src="images/תמונה%20אורי%20לאתר%20של%20מכבי.png" style="width:300px; height:auto;"" />
 
     <asp:Label ID="lblTable" runat="server" />
 </asp:Content>

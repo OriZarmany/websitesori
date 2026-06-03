@@ -48,7 +48,7 @@ public partial class login : System.Web.UI.Page
                 //st = "משתמש אותר בהצלחה";
                 Session["user"] = "ok";
                 Session["userName"] = dt.Rows[0]["firstName"];
-                Response.Redirect("page2.aspx");
+                Response.Redirect("Default.aspx");
                 
             }
         }

@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 
@@ -43,9 +42,9 @@
             flex-wrap: wrap;
         }
 
-            .menu a {
-                text-decoration: none;
-            }
+        .menu a {
+            text-decoration: none;
+        }
 
         img.menuIcon {
             width: 100px;
@@ -65,58 +64,66 @@
     <form id="form1" runat="server" onsubmit="return checkAll();">
         <div class="wrap">
             <div class="header">
-                <div class="header">
                 <img src="images/תמונת%20האתר%20של%20מכבי1.png"
                      style="width:100%; max-height:200px; object-fit:cover;" />
             </div>
-            </div>
 
-           שלום <%=Session["userName"] %>
+            שלום <%= Session["userName"] %>
 
             <div class="card">
                 <div class="menu">
-                 <% if (Session["nihol"] == "ok" || Session["user"] == "ok")
-                     { %>
+
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
                     <a href="multi.aspx">
-    <img class="menuIcon" src="images/אודות%20מכבי.png" alt="Multi" />
-                        
-</a>
+                        <img class="menuIcon" src="images/אודות%20מכבי.png" alt="Multi" />
+                    </a>
                     <% } %>
 
-                    <% if (Session["nihol"] == "ok" || Session["user"] != "ok") { %>
+                    <% if ("ok".Equals(Session["nihol"])) { %>
+                    <a href="Menahel.aspx">
+                        <img class="menuIcon" src="images/תמונת%20מנהל%20לאתר%20של%20מכבי.png" alt="Menahel" />
+                    </a>
+                    <% } %>
+
+                   <% if (Session["user"] == null && Session["nihol"] == null) { %>
                     <a href="Register.aspx">
-                        <img class="menuIcon" src="images/register2.png" alt="Register" /></a>
-                      <% } %>
-                         <% if (Session["nihol"] == "ok" || Session["user"] != "ok") { %>
-                    <a href="login.aspx">
-                        <img class="menuIcon" src="images/תמונה%20להתחברות%20מכבי.png" /></a>
-                       <% } %>
-                    <% if (Session["nihol"] == "ok" ) { %>
-<a href="addplayers.aspx">
-    <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
-</a>
-                         <% } %>
-                    
-                    <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>
-                    <a href="players2.aspx">
-    <img class="menuIcon" src="images/תמונת%20סגל%20מכבי.jpg" alt="Players" />
-</a>
-                     <% } %>
-                          <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %>              
-                    <a href="galerry.aspx">
-    <img class="menuIcon" src="images/תמונת%20גלריה%20של%20מכבי.png" alt="galery" />
-</a>
+                        <img class="menuIcon" src="images/register2.png" alt="Register" />
+                    </a>
                     <% } %>
-                 
-                  
-                   <% if (Session["nihol"] == "ok" || Session["user"] == "ok") { %> 
-                    <a href="logout.aspx">
-    <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="exit" />
-</a>
 
-                    </div>
-                                    <% } %>
-                <div class="content" >
+                    <% if (Session["user"] == null && Session["nihol"] == null) { %>
+                    <a href="login.aspx">
+                        <img class="menuIcon" src="images/תמונה%20להתחברות%20מכבי.png" alt="Login" />
+                    </a>
+                    <% } %>
+
+                    <% if ("ok".Equals(Session["nihol"])) { %>
+                    <a href="addplayers.aspx">
+                        <img class="menuIcon" src="images/מכבי%20תמונה%20שחקן.jpg" alt="Add Players" />
+                    </a>
+                    <% } %>
+
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="players2.aspx">
+                        <img class="menuIcon" src="images/תמונת%20סגל%20מכבי.jpg" alt="Players" />
+                    </a>
+                    <% } %>
+
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="galerry.aspx">
+                        <img class="menuIcon" src="images/תמונת%20גלריה%20של%20מכבי.png" alt="Gallery" />
+                    </a>
+                    <% } %>
+
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="logout.aspx">
+                        <img class="menuIcon" src="images/תמונת%20יציאה%20באתר%20של%20מכבי.png" alt="Logout" />
+                    </a>
+                    <% } %>
+
+                </div>
+
+                <div class="content">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
                 </div>
             </div>
