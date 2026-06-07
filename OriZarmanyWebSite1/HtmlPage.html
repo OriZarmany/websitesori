@@ -1,0 +1,1471 @@
+﻿<%@ Master Language="C#"              /* שפת הקוד מאחורה */
+         AutoEventWireup="true"      /* Page_Load מחובר אוטומטית */
+         CodeFile="MasterPage.master.cs" /* קובץ C# המשויך */
+         Inherits="MasterPage" %>      /* שם המחלקה */
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    // runat="server" = ASP.NET מעבד את התג
+    <!-- ContentPlaceHolder לראש הדף – כל דף מוסיף כאן CSS שלו -->
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+
+    /* ===== CSS גלובלי – חל על כל הדפים ===== */
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* פונט לכל האתר */
+            margin: 0;
+            background: #f6f7fb;
+            background-image: url('images/תמונה.png'); /* תמונת רקע */
+            background-size: cover; /* מכסה את כל הדף */
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .wrap {
+            width: 88%; /* רוחב תוכן האתר */
+            margin: 0 auto; /* מרכוז אופקי */
+        }
+
+        .header {
+            padding: 16px 0;
+        }
+
+        .card {
+            background: #fff; /* כרטיסייה לבנה */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden; /* חותך תוכן שיוצא מהגבול */
+        }
+
+        .menu {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            display: flex; /* פריסת Flexbox – פריטים בשורה */
+            gap: 18px; /* רווח בין פריטי התפריט */
+            align-items: center;
+            flex-wrap: wrap; /* ירידת שורה אם אין מקום */
+        }
+
+            .menu a {
+                text-decoration: none;
+            }
+        /* קישור ללא קו תחתון */
+
+        img.menuIcon {
+            width: 100px;
+            height: 58px;
+            object-fit: cover; /* תמונה ממלאת בלי עיוות */
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .content {
+            padding: 18px;
+        }
+        /* אזור תוכן כל דף */
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server" onsubmit="return checkAll();">
+        <div class="wrap">
+            <div class="header">
+                <!-- לוגו האתר -->
+                <img src="images/תמונה.png" style="width:100%; max-height:200px; object-fit:cover;" />
+            </div>
+
+            <!-- מציג שם משתמש מחובר -->
+            שלום <%=Session["userName"]%>
+
+            <div class="card">
+                <div class="menu">
+
+                    <%-- כפתור Multi – רק למנהל OR משתמש רגיל --%>
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="multi.aspx">
+                        <img class="menuIcon" src="images/Multi.png" alt="Multi" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Menahel – רק למנהל --%>
+                    <% if ("ok".Equals(Session["nihol"])) { %>
+                    <a href="Menahel.aspx">
+                        <img class="menuIcon" src="images/Menahel.png" alt="Menahel" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Register – רק אם לא מחובר כלל --%>
+                    <% if (Session["user"] == null && Session["nihol"] == null) { %>
+                    <a href="Register.aspx">
+                        <img class="menuIcon" src="images/register2.png" alt="Register" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Login – רק אם לא מחובר כלל --%>
+                    <% if (Session["user"] == null && Session["nihol"] == null) { %>
+                    <a href="login.aspx">
+                        <img class="menuIcon" src="images/Login.png" alt="Login" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Add Players – רק למנהל --%>
+                    <% if ("ok".Equals(Session["nihol"])) { %>
+                    <a href="addplayers.aspx">
+                        <img class="menuIcon" src="images/AddPlayers.jpg" alt="Add Players" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Players – למנהל OR משתמש רגיל --%>
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="players2.aspx">
+                        <img class="menuIcon" src="images/Players.jpg" alt="Players" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Gallery – למנהל OR משתמש רגיל --%>
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="galerry.aspx">
+                        <img class="menuIcon" src="images/Gallery.png" alt="Gallery" />
+                    </a>
+                    <% } %>
+
+                    <%-- כפתור Logout – למנהל OR משתמש רגיל --%>
+                    <% if ("ok".Equals(Session["nihol"]) || "ok".Equals(Session["user"])) { %>
+                    <a href="logout.aspx">
+                        <img class="menuIcon" src="images/Logout.png" alt="Logout" />
+                    </a>
+                    <% } %>
+
+                </div> <!-- סוף .menu -->
+                <!-- ContentPlaceHolder – כאן נטען תוכן כל דף -->
+                <div class="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+            </div> <!-- סוף .card -->
+        </div> <!-- סוף .wrap -->
+    </form>
+</body>
+</html>
+💡 Session["nihol"]="ok" → מנהל | Session["user"]="ok" → משתמש רגיל | שניהם null → לא מחובר
+MasterPage.master
+⚙️
+MasterPage.master.cs
+קובץ 2/10
+קוד C# של המאסטר – ריק
+קובץ C# שמשויך למאסטר. ריק לחלוטין כי כל הלוגיקה (תפריט דינמי) נמצאת ב-HTML של המאסטר עצמו.
+MasterPage.master.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class MasterPage : System.Web.UI.MasterPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // ריק – הלוגיקה של התפריט נמצאת בקובץ ה-master עצמו
+    }
+}
+MasterPage.master.cs
+🔐
+login.aspx
+קובץ 3/10
+דף התחברות – טופס + עיצוב
+מה הדף עושה? מציג טופס עם שדות אימייל וסיסמה. בשליחה – הלוגיקה רצה בקובץ ה-cs. אם יש שגיאה – המשתנה st מוצג בתוך div עם class="msg".
+login.aspx – הגדרת דף + CSS
+<%@ Page Title=""
+         Language="C#"
+         MasterPageFile="~/MasterPage.master"   // מי המאסטר שלנו
+         AutoEventWireup="true"
+         CodeFile="login.aspx.cs"
+         Inherits="login" %>
+
+<!-- Content1 – נכנס לאזור head של המאסטר (CSS) -->
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .box {
+            max-width: 420px; /* רוחב מקסימלי של הטופס */
+            margin: 0 auto; /* מרכז את הטופס */
+        }
+
+        .row {
+            margin-bottom: 12px;
+        }
+        /* רווח בין שורות */
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input {
+            width: 100%;
+            box-sizing: border-box; /* רוחב כולל padding */
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #16a34a; /* כפתור ירוק */
+            color: #fff;
+        }
+
+        .msg {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fef2f2; /* רקע אדום בהיר לשגיאה */
+        }
+    </style>
+</asp:Content>
+
+<!-- Content2 – נכנס לאזור ContentPlaceHolder1 (גוף הדף) -->
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="box">
+        <h2>התחברות</h2>
+
+        <div class="row">
+            <label>אימייל:</label>
+            <input class="input" type="text" name="email" />
+        </div>
+
+        <div class="row">
+            <label>סיסמה:</label>
+            <input class="input" type="text" name="password" />
+        </div>
+
+        <div class="row">
+            <input class="btn" type="submit" value="התחבר" />
+        </div>
+
+        <%-- אם st אינו ריק – מציג הודעת שגיאה --%>
+        <% if (!string.IsNullOrEmpty(st)) { %>
+        <div class="msg"><%=st%></div>
+        <% } %>
+
+    </div>
+</asp:Content>
+login.aspx
+⚙️
+login.aspx.cs
+קובץ 4/10
+לוגיקת התחברות – C#
+זרימת הקוד: מקבל אימייל + סיסמה → בודק אם מנהל (hardcoded) → אם לא, מחפש בטבלת tUsers → אם נמצא: Session + redirect → אם לא נמצא: שגיאה ב-st.
+login.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class login : System.Web.UI.Page
+{
+    public string st = "";   // public כדי שה-HTML יוכל לקרוא אותו (<%=st%>)
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack) return;
+        // IsPostBack = true רק כשהטופס נשלח (לחיצת submit)
+        // בטעינה ראשונה IsPostBack=false, אז יוצאים מיד
+
+        string email = Request.Form["email"];    // קריאת ערך שדה "email" מהטופס
+        string pass  = Request.Form["password"];  // קריאת ערך שדה "password"
+
+        // ===== בדיקת מנהל – hardcoded (קשיח בקוד) =====
+        if (email == "orimenal@gmail.com" && pass == "manael123")
+        {
+            Session["nihol"]    = "ok";       // מסמן שמנהל מחובר
+            Session["userName"] = "מנהל";     // שם להצגה בתפריט
+            Response.Redirect("menahel.aspx"); // מעביר לדף המנהל
+        }
+        else
+        {
+            // ===== בדיקה מול בסיס הנתונים =====
+            string sql = "SELECT * FROM [dbo].[tUsers] " +
+                         "WHERE email = N'" + email + "' " +
+                         "AND password = N'" + pass + "'";
+            // N'' = מחרוזת Unicode (תמיכה בעברית)
+
+            DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+            // DataTable = טבלה בזיכרון עם תוצאות השאילתה
+
+            if (dt.Rows.Count == 0)    // אין שורות → לא נמצא
+            {
+                Session["userName"] = "אורח";
+                st = "אימריל או סיסמה שגריים";   // יוצג ב-HTML
+            }
+            else                        // נמצאה לפחות שורה אחת → משתמש תואם
+            {
+                Session["user"]     = "ok";                     // משתמש רגיל מחובר
+                Session["userName"] = dt.Rows[0]["firstName"];  // שם מהשורה הראשונה
+                Response.Redirect("Default.aspx");
+            }
+        }
+    }
+}
+⚠️ הסיסמה שמורה כטקסט רגיל – לא מוצפנת. זו חולשת אבטחה ידועה בפרויקט.
+login.aspx.cs
+📝
+Register.aspx
+קובץ 5/10
+הרשמה – JavaScript ולידציה + HTML טופס
+מה הדף עושה? טופס הרשמה מלא עם ולידציה ב-JavaScript (צד לקוח – לפני שליחה לשרת). מכיל שדות: אימייל, סיסמה, שם, אזור, האם אוהד (radio), שחקנים מועדפים (checkboxes), גיל, סיבה.
+Register.aspx – הגדרת דף
+<%@ Page Title=""
+         Language="C#"
+         MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true"
+         CodeFile="Register.aspx.cs"
+         Inherits="_Default" %>
+Register.aspx – JavaScript ולידציה (Content1 – head)
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script language="javascript">
+
+        // checkAll – רצה onsubmit. מנקה שגיאות ובודק הכל.
+        function checkAll() {
+            firstnameError.innerHTML  = "";
+            lastnameError.innerHTML   = "";
+            emailError.innerHTML      = "";
+            passwordError.innerHTML   = "";
+            inlineError.innerHTML     = "";
+            ageError.innerHTML        = "";
+            reasonError.innerHTML     = "";
+
+            let f = true;   // f = האם הטופס תקין
+
+            f = checkFirstName() && f;   // && f כדי שגם אם f כבר false, f נשאר false
+            f = checkLastName()  && f;
+            f = checkEmail()     && f;
+            f = checkPassword()  && f;
+            f = checkFan()       && f;
+            f = checkAge()       && f;
+            f = checkReason()    && f;
+
+            return f;   // אם false → הטופס לא נשלח לשרת
+        }
+
+        // ===== בדיקת שם פרטי =====
+        function checkFirstName() {
+            let val = document.getElementById("firstname").value;
+            let err = document.getElementById("firstnameError");
+            // פחות מ-2, יותר מ-20, או מכיל ספרות
+            if (val.length < 2 || val.length > 20 || !/\d/.test(val)) {
+                err.innerHTML = "שם פרטי לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת שם משפחה =====
+        function checkLastName() {
+            let val = document.getElementById("lastname").value;
+            let err = document.getElementById("lastnameError");
+            if (val.length < 2 || val.length > 20 || !/\d/.test(val)) {
+                err.innerHTML = "שם משפחה לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת אימייל =====
+        function checkEmail() {
+            let val = document.getElementById("email").value;
+            let err = document.getElementById("emailError");
+            // חייב @, בין 5 ל-30 תווים
+            if (val.length < 5 || val.length > 30 || !val.includes("@")) {
+                err.innerHTML = "אימריל לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת סיסמה =====
+        function checkPassword() {
+            let val        = document.getElementById("password").value;
+            let err        = document.getElementById("passwordError");
+            let hasLetters = /[a-zA-Z]/.test(val);   // regex: האם יש אות
+            let hasNumbers = /\d/.test(val);          // regex: האם יש ספרה
+            // 6-20 תווים + חייב גם אותיות וגם ספרות
+            if (val.length < 6 || val.length > 20 || !hasLetters || !hasNumbers) {
+                err.innerHTML = "סיסמה לא תקינה";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת radio (האם אוהד) =====
+        function checkFan() {
+            let radios   = document.getElementsByName("fan");  // כל radio של fan
+            let err      = document.getElementById("inlineError");
+            let selected = false;
+
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) { selected = true; break; }
+            }
+            if (!selected) {
+                err.innerHTML = "יש לבחור כן או לא";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת גיל =====
+        function checkAge() {
+            let val = document.getElementById("age").value;
+            let err = document.getElementById("ageError");
+            if (val === "" || isNaN(val) || val < 1 || val > 120) {
+                err.innerHTML = "גיל לא תקין";
+                return false;
+            }
+            return true;
+        }
+
+        // ===== בדיקת סיבה =====
+        function checkReason() {
+            let val = document.getElementById("reason").value;
+            let err = document.getElementById("reasonError");
+            if (val.length < 5) {
+                err.innerHTML = "נא למלא סיבה";
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+
+    <style>
+        .box {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .row {
+            margin-bottom: 12px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .input, select, textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .inline {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border: 0;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .msg {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f3f4f6;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.85rem;
+        }
+    </style>
+</asp:Content>
+Register.aspx – HTML טופס (Content2 – גוף)
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="box">
+        <h2>טופס אוהדי מכבי</h2>
+
+        <div class="row">
+            <label>אימייל:</label>
+            <input class="input" type="text" name="email" id="email" />
+            <span class="error" id="emailError"></span>    <!-- שגיאה מ-JS -->
+        </div>
+
+        <div class="row">
+            <label>סיסמה:</label>
+            <input class="input" type="text" name="password" id="password" />
+            <span class="error" id="passwordError"></span>
+        </div>
+
+        <div class="row">
+            <label>שם פרטי:</label>
+            <input class="input" type="text" name="firstname" id="firstname" />
+            <span class="error" id="firstnameError"></span>
+        </div>
+
+        <div class="row">
+            <label>שם משפחה:</label>
+            <input class="input" type="text" name="lastname" id="lastname" />
+            <span class="error" id="lastnameError"></span>
+        </div>
+
+        <div class="row">
+            <label>האם אתה אוהד מכבי?</label>
+            <div class="inline" id="inline">
+                <label>
+                    <input type="radio" name="fan" value="1" checked /> כן
+                </label>
+                <label>
+                    <input type="radio" name="fan" value="0" /> לא
+                </label>
+            </div>
+            <span class="error" id="inlineError"></span>
+        </div>
+
+        <div class="row">
+            <label>אזור:</label>
+            <select class="input" name="region" id="region">
+                <option value="צפון">צפון</option>
+                <option value="מרכז">מרכז</option>
+                <option value="דרום">דרום</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <label>שחקנים שאתה אוהב:</label>
+            <!-- checkboxes – מרובים, שם זהה, ערכים שונים -->
+            <label><input type="checkbox" name="players" value="גנון דיברתולומאו" /> גנון דיברתולומאו</label>
+            <label><input type="checkbox" name="players" value="גבריאל לונברנד" /> גבריאל לונברנד</label>
+            <label><input type="checkbox" name="players" value="גנילן הורד" /> גנילן הורד</label>
+            <label><input type="checkbox" name="players" value="נרמי קלארק" /> נרמי קלארק</label>
+            <label><input type="checkbox" name="players" value="מרפין סנטוס" /> מרפין סנטוס</label>
+            <label><input type="checkbox" name="players" value="אורן טהר" /> אורן טהר</label>
+            <label><input type="checkbox" name="players" value="גנר לבייא" /> גנר לבייא</label>
+            <label><input type="checkbox" name="players" value="עמית אבו" /> עמית אבו</label>
+            <label><input type="checkbox" name="players" value="לוני דוקר" /> לוני דוקר</label>
+            <label><input type="checkbox" name="players" value="רומן סורקין" /> רומן סורקין</label>
+            <label><input type="checkbox" name="players" value="אופייר ברימס" /> אופייר ברימס</label>
+            <label><input type="checkbox" name="players" value="דוניל רימן" /> דוניל רימן</label>
+            <label><input type="checkbox" name="players" value="תמיר גולד" /> תמיר גולד</label>
+            <label><input type="checkbox" name="players" value="נף דאומין נוניירר" /> נף דאומין נוניירר</label>
+            <label><input type="checkbox" name="players" value="מד.גני ליף" /> מד.גני ליף</label>
+            <label><input type="checkbox" name="players" value="זאק הנקינס" /> זאק הנקינס</label>
+            <label><input type="checkbox" name="players" value="תמיר בלאס" /> תמיר בלאס</label>
+            <span class="error" id="regionError"></span>
+        </div>
+
+        <div class="row">
+            <label>גיל:</label>
+            <input class="input" type="number" name="age1" min="1" max="120" id="age" />
+            <span class="error" id="ageError"></span>
+        </div>
+
+        <div class="row">
+            <label>למה אתה אוהב את מכבי?</label>
+            <textarea class="input" name="reason" id="reason" rows="4" cols="40"></textarea>
+            <span class="error" id="reasonError"></span>
+        </div>
+
+        <div class="row">
+            <input class="btn" type="submit" value="שלח" />
+        </div>
+
+        <%-- הודעת שרת (הצלחה / שגיאה) --%>
+        <% if (!string.IsNullOrEmpty(st)) { %>
+        <div class="msg"><%=st%></div>
+        <% } %>
+
+    </div>
+</asp:Content>
+Register.aspx
+⚙️
+Register.aspx.cs
+קובץ 6/10
+לוגיקת הרשמה – C#
+Register.aspx.cs
+using System;
+using System.Web;
+using System.Web.UI;
+
+public partial class _Default : Page
+{
+    public string st = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack) return;   // רץ רק כשהטופס נשלח
+
+        // קריאת כל שדות הטופס
+        string email     = Request.Form["email"];
+        string password  = Request.Form["password"];
+        string firstName = Request.Form["firstname"];
+        string lastName  = Request.Form["lastname"];
+        string region    = Request.Form["region"];
+        string fan       = Request.Form["fan"];
+        string age       = Request.Form["age1"];
+        string reason    = Request.Form["reason"];
+
+        // GetValues מחזיר מערך של כל checkboxes המסומנים
+        string[] playersArr = Request.Form.GetValues("players");
+        // אם לא נבחר אף אחד playersArr=null, לכן בודקים לפני Join
+        string players = playersArr != null ? string.Join(", ", playersArr) : "";
+
+        // ===== בדיקה: האם האימייל כבר קיים? =====
+        string sql = "SELECT * FROM tUsers WHERE email = N'" + email + "'";
+        bool exists = MyAdoHelper.IsExist(sql);   // מחזיר true/false
+
+        if (exists)
+        {
+            st = "קיים במערכת, אנא בחר מייל אחר " + exists;
+            return;   // עוצר – לא ממשיך ל-INSERT
+        }
+
+        // ===== INSERT – הכנסת משתמש חדש לטבלה =====
+        string sqlInsert =
+            "INSERT INTO tUsers " +
+            "(email, password, firstName, lastName, region, fan, age, reason, players) " +
+            "VALUES (" +
+            "N'" + email     + "', " +
+            "N'" + password  + "', " +
+            "N'" + firstName + "', " +
+            "N'" + lastName  + "', " +
+            "N'" + region    + "', " +
+                   fan       + ", " +   // fan הוא מספר (1/0), לא מחרוזת
+                   age       + ", " +
+            "N'" + reason    + "', " +
+            "N'" + players   + "'" +
+            ")";
+
+        MyAdoHelper.DoQuery("MyDB.mdf", sqlInsert);   // ביצוע INSERT
+        st = "נרשמת בהצלחה!";
+        Response.Redirect("login.aspx");             // מעביר לדף Login
+    }
+}
+Register.aspx.cs
+🏠
+Default.aspx
+קובץ 7/10
+דף הבית – סטטי, ללא לוגיקה
+Default.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true" CodeFile="page2.aspx.cs"
+         Inherits="page2" ResponseEncoding="utf-8" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <meta charset="utf-8" />
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <div dir="rtl" style="text-align:right;">
+        <h2>אחר של מכבי תל אביב</h2>
+        <h3>באתר זה ניתן לקבל את העדכונים הבאים של מכבי:</h3>
+        <ul>
+            <li><strong>פרופיל שחקן:</strong> הגובה שלו, מספר חולצה, הנגרעים הגדולים...</li>
+            <li><strong>גלריה:</strong> לכל זכירת אירופה של מכבי הגדולים</li>
+            <li><strong>קיל:</strong> לנות לכל אחד ממפעל הכבוד</li>
+        </ul>
+        <img src="images/כדורסל מכבי.png" width="250" alt="כדורסל מכבי" />
+        <img src="images/1977 נבייא אירופה מכבי.png" width="494" alt="1977 אירופה" />
+    </div>
+</asp:Content>
+Default.aspx
+⚙️
+Default.aspx.cs
+קובץ 8/10
+קוד C# של דף הבית – ריק
+Default.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // ריק – דף הבית הוא סטטי, אין לוגיקה
+    }
+}
+Default.aspx.cs
+🖼️
+galerry.aspx
+קובץ 9/10
+גלריית תמונות – CSS Grid
+galerry.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true" CodeFile="galerry.aspx.cs"
+         Inherits="Default2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style>
+        .gallery-container {
+            display: grid;
+            /* auto-fit = מספר עמודות אוטומטי לפי רוחב הדפדפן */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+            .gallery-item h2 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+        .image-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden; /* חותך את התמונה לגבול */
+            border-radius: 4px;
+        }
+
+            .image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* ממלא את המיכל בלי עיוות */
+                display: block;
+            }
+    </style>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="gallery-container">
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 1977:</h2>
+            <div class="image-wrapper">
+                <img src="images/1977 נבייא אירופה מכבי.png" alt="1977 נבייא" />
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 1981:</h2>
+            <div class="image-wrapper">
+                <img src="images/1981 נבייא אירופה מכבי.png" alt="1981 נבייא" />
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 2001:</h2>
+            <div class="image-wrapper">
+                <img src="images/2001 נבייא אירופה מכבי.png" alt="2001 נבייא" />
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 2004:</h2>
+            <div class="image-wrapper">
+                <img src="images/2004 נבייא אירופה מכבי.png" alt="2004 נבייא" />
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 2005:</h2>
+            <div class="image-wrapper">
+                <img src="images/2005 נבייא אירופה מכבי.png" alt="2005 נבייא" />
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <h2>נבייא אירופה 2014:</h2>
+            <div class="image-wrapper">
+                <img src="images/2014 נבייא אירופה מכבי.png" alt="2014 נבייא" />
+            </div>
+        </div>
+
+    </div>
+</asp:Content>
+galerry.aspx
+⚙️
+galerry.aspx.cs
+קובץ 10/10
+C# של הגלריה – ריק
+galerry.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Default2 : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // ריק – הגלריה היא סטטית לחלוטין
+    }
+}
+galerry.aspx.cs
+➕
+addplayers.aspx
+קובץ 11/12
+הוספת שחקן – מנהל בלבד
+addplayers.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true" CodeFile="addplayers.aspx.cs"
+         Inherits="addplayers" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script language="javascript">
+
+        function checkAll() {
+            document.getElementById("playerNameError").innerHTML          = "";
+            document.getElementById("playerNumberError").innerHTML        = "";
+            document.getElementById("theplayerssesonsatMaccabiError").innerHTML = "";
+            document.getElementById("playerageError").innerHTML           = "";
+
+            let f = true;
+            f = checkName()    && f;
+            f = checkNumber()  && f;
+            f = checkSeasons() && f;
+            f = checkAge()     && f;
+            return f;
+        }
+
+        // שם שחקן – 3 עד 40 תווים, ללא ספרות
+        function checkName() {
+            let name = document.getElementById("playerName").value;
+            if (name.length <= 2 || name.length > 40 || /\d/.test(name)) {
+                document.getElementById("playerNameError").innerHTML =
+                    "שם שחקן חייב להיות 3-40 תרוים וללא מספרים";
+                return false;
+            }
+            return true;
+        }
+
+        // מספר חולצה – בין 0 ל-99
+        function checkNumber() {
+            let num = document.getElementById("playerNumber").value;
+            if (num === "" || isNaN(num) || num < 0 || num > 99) {
+                document.getElementById("playerNumberError").innerHTML =
+                    "מספר שחקן חייב להיות בין 0-99";
+                return false;
+            }
+            return true;
+        }
+
+        // עונות – מספר גדול מ-0
+        function checkSeasons() {
+            let seasons = document.getElementById("theplayerssesonsatMaccabi").value;
+            if (seasons === "" || isNaN(seasons) || seasons <= 0) {
+                document.getElementById("theplayerssesonsatMaccabiError").innerHTML =
+                    "חובה להזין מספר עונות גדול מ-0";
+                return false;
+            }
+            return true;
+        }
+
+        // גיל – בין 1 ל-120
+        function checkAge() {
+            let age = document.getElementById("playerage").value;
+            if (age === "" || isNaN(age) || age < 1 || age > 120) {
+                document.getElementById("playerageError").innerHTML =
+                    "חובה להזין גיל תקין (1-120)";
+                return false;
+            }
+            return true;
+
+            return f;
+        }
+
+    </script>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <h2>הוספת שחקן</h2>
+
+    <label>שם שחקן:</label>
+    <input type="text" name="playerName" id="playerName" />
+    <br />
+    <span class="error" id="playerNameError"></span>
+
+    <label>מספר שחקן:</label>
+    <input type="number" name="playerNumber" id="playerNumber" />
+    <br />
+    <span class="error" id="playerNumberError"></span>
+
+    <label>כמה עונות השחקן במכבי?:</label>
+    <input type="number" name="theplayerssesonsatMaccabi" id="theplayerssesonsatMaccabi" />
+    <br />
+    <span class="error" id="theplayerssesonsatMaccabiError"></span>
+
+    <label>גיל שחקן:</label>
+    <input type="number" name="playerage" id="playerage" />
+    <br />
+    <span class="error" id="playerageError"></span>
+
+    <input type="submit" value="הוסף שחקן" />
+
+    <br />
+    <br />
+    <%-- הודעת הצלחה/שגיאה מהשרת --%>
+    <strong><%=st%></strong>
+</asp:Content>
+addplayers.aspx
+⚙️
+addplayers.aspx.cs
+קובץ 12/12
+INSERT לטבלת TPLAYERS
+addplayers.aspx.cs
+using System;
+using System.Web;
+
+public partial class addplayers : System.Web.UI.Page
+{
+    public string st = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Page.IsPostBack)   // רץ רק בשליחת הטופס
+        {
+            string playerName                = Request.Form["playerName"];
+            string playerNumber              = Request.Form["playerNumber"];
+            string theplayerssesonsatMaccabi = Request.Form["theplayerssesonsatMaccabi"];
+            string playerage                 = Request.Form["playerage"];
+
+            // INSERT לטבלת TPLAYERS
+            string sqlInsert =
+                "INSERT TPLAYERS " +
+                "(PlayerName, playerNumber, theplayerssesonsatMaccabi, playerage) " +
+                "VALUES (" +
+                "N'" + playerName  + "', " +
+                       playerNumber + ", " +
+                       theplayerssesonsatMaccabi + ", " +
+                       playerage +
+                ")";
+
+            MyAdoHelper.DoQuery("MyDB.mdf", sqlInsert);
+            st = "DONE";   // מציג הודעת הצלחה ב-HTML
+        }
+    }
+}
+addplayers.aspx.cs
+🚪
+logout.aspx
+קובץ 13/14
+התנתקות – הכי פשוט בפרויקט
+logout.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true" CodeFile="logout.aspx.cs"
+         Inherits="logout" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <%
+    Session.Abandon();              // מוחק את כל ה-Session (Session["user"], Session["nihol"]...)
+    Response.Redirect("login.aspx"); // מעביר לדף ההתחברות
+    %>
+</asp:Content>
+💡 Session.Abandon() מוחק הכל: Session["user"], Session["nihol"], Session["userName"] – המשתמש מנותק לחלוטין
+logout.aspx
+⚙️
+logout.aspx.cs
+קובץ 14/14
+C# של Logout – ריק
+logout.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class logout : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // ריק – הלוגיקה (Session.Abandon) נמצאת ב-HTML של logout.aspx
+    }
+}
+logout.aspx.cs
+👨‍💼
+Menahel.aspx
+קובץ 15/16
+דף המנהל – חיפוש משתמשים
+Menahel.aspx
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master"
+         AutoEventWireup="true" CodeFile="Menahel.aspx.cs"
+         Inherits="Menahel" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <h1>Manager</h1>
+
+    <div class="row">
+        <label>שם פרטי:</label>
+        <input class="input" type="text" name="firstname" />
+    </div>
+
+    <div class="row">
+        <label>שמם מ:</label>
+        <input class="input" type="text" name="lastname" />
+    </div>
+
+    <div class="row">
+        <input class="btn" type="submit" value="חפש" />
+    </div>
+
+    <%-- מציג את הטבלה שנבנתה ב-C# --%>
+    <%=st%>
+
+</asp:Content>
+Menahel.aspx
+⚙️
+Menahel.aspx.cs
+קובץ 16/16
+SELECT + LIKE + בניית טבלה דינמית
+Menahel.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Menahel : System.Web.UI.Page
+{
+    public string st = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // הערה: אין if (!IsPostBack) כאן – הקוד רץ תמיד
+        string fn = Request.Form["firstname"];
+        string ln = Request.Form["lastname"];
+
+        // LIKE N'%...%' = מחפש כל רשומה שמכילה את הטקסט (לא חייב להתחיל בו)
+        string sql = "SELECT * FROM TUSERS where " +
+                     "firstName LIKE N'%" + fn + "%' and " +
+                     "lastName LIKE N'%" + ln + "%'";
+
+        DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+
+        if (dt.Rows.Count == 0)
+        {
+            st = "אין לנחורים";   // לא נמצאו תוצאות
+        }
+        else
+        {
+            // בניית טבלת HTML כמחרוזת (st) – תוצג ב-<%=st%> ב-HTML
+            st += "<table border='1'>
+    ";
+    st += "
+    <tr>
+        ";
+        st += "
+        <td> email </td>";
+        st += "
+        <td> password </td>";
+        st += "
+        <td> firstname </td>";
+        st += "
+        <td> lastname </td>";
+        st += "
+        <td> region </td>";
+        st += "
+        <td> fan </td>";
+        st += "
+        <td> age </td>";
+        st += "
+        <td> reason </td>";
+        st += "
+        <td> players </td>";
+        st += "
+    </tr>";
+
+    // לולאה על כל שורה בתוצאות
+    for (int i = 0; i < dt.Rows.Count; i++)
+    {
+    st += "
+    <tr>
+        ";
+        // לולאה על כל עמודה באותה שורה
+        for (int k = 0; k < dt.Columns.Count; k++)
+        {
+        st += "
+        <td>" + dt.Rows[i][k] + "</td>";
+        // dt.Rows[i][k] = ערך בשורה i, עמודה k
+        }
+        st += "
+    </tr>";
+    }
+    st += "
+</table>";
+        }
+    }
+}
+Menahel.aspx.cs
+👤
+multi.aspx
+קובץ 17/18
+פרופיל המפתח – CSS מעוצב
+multi.aspx
+<%@ Page Title="אורות – המועדון הפורסום" Language="C#"
+         MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+         CodeFile="multi.aspx.cs" Inherits="multi" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <style>
+        .about-container {
+            direction: rtl; /* RTL – עברית */
+            text-align: right;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+            .about-container h2 {
+                color: #003399; /* כחול מכבי */
+                font-size: 28px;
+                margin-bottom: 10px;
+            }
+
+            .about-container h3 {
+                color: #333;
+                font-size: 20px;
+                margin-top: 25px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid #ffcc00; /* קו תחתי צהוב */
+                padding-bottom: 5px;
+            }
+
+            .about-container p {
+                font-size: 16px;
+                line-height: 1.6;
+                color: #555;
+            }
+
+            .about-container ul {
+                list-style-type: square;
+                margin-right: 20px;
+            }
+
+            .about-container li {
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+
+        .profile-img {
+            display: block;
+            margin: 30px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="about-container">
+        <h2>נעים להכיר, אני אורי זרמני</h2>
+        <p>
+            בן 16 מספר סבא, ומאז שאני זוכר את עצמי אני אוהד של מכבי.
+            זה בדיוק הסיבה שהחלטתי לקחת את זה לרמה הבאה ולכפות בדרדרסל.
+            כל פעם שאני בא לידי אליהם (להאזיל של מכבי) אני מתחרב מחדש כנד ארוד בנוה.
+            הייתי כבר בכמאות משחקים של מכבי מארץ ומחול ודבר הגל על ההיריסטוריה של מכבי
+            .וסבאאן רציתי לבנייא את הידיע שלי במכבי פלי שארצה לדעת יותר על המועדון הגדול בישראל
+        </p>
+        <img src="images/אורי אירות מכבי.png" class="profile-img"
+             style="width:300px; height:auto;" alt="אורי זרמני" />
+        <!-- asp:Label – מציג תוכן שנוצר ב-C# -->
+        <asp:Label ID="lblTable" runat="server" />
+    </div>
+</asp:Content>
+multi.aspx
+⚙️
+multi.aspx.cs
+קובץ 18/18
+טבלת כפל – בתוך הערה (לא פעיל)
+multi.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class multi : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        /* ← /* מתחיל הערה ארוכה – כל הקוד בפנים לא רץ!
+
+        int n = 10;
+        string html = "<table border='1' cellpadding='5'>
+    ";
+
+    // שורה ראשונה – כותרות (1,2,3...)
+    html += "
+    <tr>
+        <td>x</td>";
+        for (int i = 1; i <= n; i++)
+        html += "
+        <td>" + i + "</td>";
+        html += "
+    </tr>";
+
+    // שאר השורות – תוצאות הכפל
+    for (int i = 1; i <= n; i++)
+    {
+    html += "
+    <tr>
+        ";
+        html += "
+        <td><b>" + i + "</b></td>";   // מספר השורה מודגש
+
+        for (int j = 1; j <= n; j++)
+        html += "
+        <td>" + (i * j) + "</td>";  // i כפול j
+
+        html += "
+    </tr>";
+    }
+    html += "
+</table>";
+
+        lblTable.Text = html;   // שים את הטבלה ב-asp:Label
+
+        */ ← */ סוגר את ההערה
+    }
+}
+multi.aspx.cs
+👥
+Players2.aspx
+קובץ 19/20
+חיפוש שחקנים – טבלה בצבעי מכבי
+Players2.aspx
+<%@ Page Title="מכבי – כל שחקני המכבי" Language="C#"
+         MasterPageFile="~/MasterPage.master" AutoEventWireup="true"
+         CodeFile="Players2.aspx.cs" Inherits="Players2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <title>Players</title>
+    <style>
+        /* פריסת Flex – תוכן ראשי + תמונה בצד */
+        .page-layout {
+            display: flex;
+            direction: rtl;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+            .main-content h2 {
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+
+        .side-image-container {
+            flex-shrink: 0;
+        }
+        /* לא מתכווץ */
+        .side-image {
+            width: 450px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .search-area {
+            margin-bottom: 15px;
+        }
+
+        /* עיצוב טבלת שחקנים – צבעי מכבי */
+        .playersTable {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            .playersTable th {
+                background-color: #ffd700; /* צהוב מכבי */
+                color: #0033cc; /* כחול מכבי */
+                padding: 8px;
+                text-align: center;
+            }
+
+            .playersTable td {
+                padding: 8px;
+                text-align: center;
+                border: 1px solid #0033cc;
+            }
+
+            /* שורות בצבעים חלופיים */
+            .playersTable tr:nth-child(even) {
+                background-color: #f0f8ff;
+            }
+
+            .playersTable tr:nth-child(odd) {
+                background-color: #fffacd;
+            }
+    </style>
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div style="direction: rtl; padding: 20px;">
+        <div class="page-layout">
+
+            <!-- תמונה בצד -->
+            <div class="side-image-container">
+                <img src="images/סמל מכבי.jpg" class="side-image" alt="סמל מכבי" />
+            </div>
+
+            <div class="main-content">
+                <h2>השחקנים שלנו:</h2>
+
+                <!-- טופס חיפוש -->
+                <div class="search-area">
+                    <label>חיפוש שם:</label>
+                    <input type="text" name="playerName" />
+                    <input type="submit" value="חפש" />
+                </div>
+
+                <!-- asp:Literal – מציג HTML גולמי שנוצר ב-C# -->
+                <asp:Literal ID="ltTable" runat="server"></asp:Literal>
+            </div>
+
+        </div>
+    </div>
+</asp:Content>
+Players2.aspx
+⚙️
+Players2.aspx.cs
+קובץ 20/20
+SELECT + LIKE מטבלת tPlayers
+Players2.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Players2 : System.Web.UI.Page
+{
+    public string st = "";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //if (!IsPostBack) return;   // מסומן כהערה – רץ גם בטעינה ראשונה
+
+        string pn = Request.Form["playerName"];   // שם לחיפוש
+
+        // חיפוש בטבלת tPlayers – LIKE מחפש כל שם שמכיל את pn
+        string sql = "SELECT * FROM tPlayers WHERE playerName LIKE N'%" + pn + "%'";
+
+        DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+
+        if (dt.Rows.Count == 0)
+        {
+            st = "אין לנחורים";
+        }
+        else
+        {
+            // בניית טבלה עם כותרות בעברית
+            st += "<table class='playersTable'>
+    ";
+    st += "
+    <tr>
+        ";
+        st += "
+        <th></th>";
+        st += "
+        <th>שחקן שם</th>";
+        st += "
+        <th>מספר</th>";
+        st += "
+        <th>כמה עונות השחקן במכבי</th>";
+        st += "
+        <th>גיל</th>";
+        st += "
+    </tr>";
+
+    for (int i = 0; i < dt.Rows.Count; i++)
+    {
+    st += "
+    <tr>
+        ";
+        for (int k = 0; k < dt.Columns.Count; k++)
+        {
+        st += "
+        <td style='padding:5px; text-align:center;'>
+            "
+            + dt.Rows[i][k] + "
+        </td>";
+        }
+        st += "
+    </tr>";
+    }
+    st += "
+</table>";
+        }
+
+        ltTable.Text = st;   // שים את הטבלה ב-asp:Literal
+    }
+}
+Players2.aspx.cs
+📊
+סיכום – כל הקבצים
+טבלת סיכום
+קובץ	תפקיד	IsPostBack?	DB?	Session?
+MasterPage.master	תבנית + תפריט דינמי	–	לא	קורא
+login.aspx.cs	התחברות	כן	SELECT	כותב (user/nihol)
+Register.aspx.cs	הרשמה	כן	IsExist + INSERT	לא
+Default.aspx	דף בית סטטי	–	לא	לא
+galerry.aspx	גלריית תמונות	–	לא	לא
+addplayers.aspx.cs	הוספת שחקן	כן (IsPostBack)	INSERT	לא
+logout.aspx	התנתקות	–	לא	Abandon()
+Menahel.aspx.cs	חיפוש משתמשים	לא!	SELECT+LIKE	לא
+multi.aspx.cs	פרופיל (טבלת כפל מושבתת)	–	לא	לא
+Players2.aspx.cs	חיפוש שחקנים	לא!	SELECT+LIKE	לא
+MyAdoHelper – 3 פונקציות שחייבים לדעת
+// 1. SELECT – מחזיר DataTable עם כל התוצאות
+DataTable dt = MyAdoHelper.ExecuteDataTable(sql);
+    // dt.Rows.Count    = כמה שורות חזרו
+    // dt.Rows[i][k]    = ערך בשורה i, עמודה k
+    // dt.Columns.Count = כמה עמודות
+
+// 2. בדיקת קיום – מחזיר true אם יש לפחות שורה אחת
+bool exists = MyAdoHelper.IsExist(sql);
+
+// 3. INSERT / UPDATE / DELETE – מבצע שאילתה ללא תוצאה
+MyAdoHelper.DoQuery("MyDB.mdf", sql);
